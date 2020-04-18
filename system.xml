@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+query_mode 1 仅仅搜索不启动爬虫
+-->
+
+<item>
+  <config>
+    <host>http://www.qytmail.com</host>
+    <server_port>80</server_port> 
+    <thread_search>1</thread_search>
+    <thread_html>1</thread_html>
+    <thread_downlad>1</thread_downlad>  
+    <search_mode>0</search_mode>
+    <prev>&lt;上一页</prev>
+    <next>下一页&gt;</next>
+    <spider_interval>1</spider_interval>
+    <hot_words>1</hot_words>
+    <test>1</test>
+  </config>  
+</item>

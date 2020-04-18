@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>撸代码搜索引擎</title>
+
+
+<!-- Bootstrap CSS -->
+<link href="index_files/bootstrap.css" rel="stylesheet">
+
+<style type="text/css">
+body {
+	font-family: arial, 'Microsoft Yahei', '微软雅黑';
+	font-size: 13px;
+	height: 100%;
+	min-height: 720px;
+	position: relative;
+}
+
+a:hover {
+	color: #3E82F7
+}
+
+.sinput {
+	border-color: #3E82F7;
+	border-radius: 0px;
+	font-size: 20px;
+	height: 48px;
+}
+
+.sinput:focus {
+	color: #333;
+	background-color: #fff;
+	border-color: #3E82F7;
+	outline: none;
+	border-radius: 0px;
+}
+
+.sbt {
+	border-radius: 0px;
+	padding: 0.5rem 1.0rem;
+	/* background: #4d90fe; */
+	background: #3E82F7;
+	border-color: #3E82F7;
+	font-size: 20px;
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.sbt:hover {
+	background-color: #3E82F7;
+	border-color: #3E82F7;
+}
+
+.logo {
+	width: 255px;
+	height: 54px;
+}
+
+.logobox {
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 20px;
+}
+
+.fixedsticky {
+	top: 0;
+}
+
+#news, #meizi {
+	padding: 10px;
+	padding-left: 20px;
+}
+
+.np3, .np1, .np2, .np0 {
+	border-bottom: 1px solid #eee;
+	/* max-height: 170px; */
+	padding: 10px 0;
+}
+
+.meta {
+	padding: 5px 0 0 0;
+}
+
+.np3 h5 a, .np1 h5 a, .np0  h5 a, .np2  h5 a {
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.np1 .ri {
+	height: 100px;
+	vertical-align: middle;
+	display: table-cell;
+	padding-left: 20px;
+}
+
+.np1 .le {
+	width: 30%;
+	height: 100px;
+	vertical-align: middle;
+	display: table-cell;
+	height: 100px;
+}
+
+.fix {
+	position: fixed;
+	top: 0;
+	background: #fefefe;
+	padding: 15px;
+	z-index: 1000;
+	border-bottom: 1px solid #fefefe;
+	box-shadow: 0 2px 5px rgba(255, 113, 113, 0.65);
+}
+
+.time {
+	font-size: 12px;
+	color: #aaa;
+}
+
+.mytab {
+	border-bottom: 1px solid #eee;
+	padding-left: 10px;
+}
+
+.mytab a {
+	font-size: 14px;
+	color: #333;
+	padding: 10px;
+}
+
+.mytab a.active {
+	font-weight: bold;
+	/* color: #f44336;
+	border-bottom: 2px solid #f44336; 
+	color: #FF5722;
+	border-bottom: 2px solid #FF5722;
+	*/
+	color: #3E82F7;
+	border-bottom: 2px solid #3E82F7;
+}
+
+@media screen and ( min-width : 1200px) {
+	.searchbox {
+		margin: 0 auto;
+		width: 800px;
+	}
+}
+
+.np3 .i3 {
+	width: 30%;
+	height: auto;
+	margin: 2px;
+	border: 1px solid #eee;
+}
+
+.np1 .i3 {
+	width: 100%;
+	height: auto;
+	margin: 2px;
+	border: 1px solid #eee;
+}
+
+@media screen and ( min-width : 1200px) {
+	.np1 .i3, .np3 .i3 {
+		width: 160px;
+		height: 90px;
+	}
+	.np1 .le {
+		width: 160px;
+	}
+	.staybox {
+		width: 900px;
+		margin: 0 auto;
+	}
+}
+
+.login {
+	padding: 0px 10px;
+	font-size: 12px;
+	border-radius: 3px;
+	background-color: #3E82F7;
+	border-color: #3E82F7;
+	vertical-align: middle;
+	margin-right: 20px;
+	line-height: 23px;
+}
+
+.login:hover, .login:active {
+	background-color: #2d61b9;
+	border: 1px solid #2d61b9;
+}
+
+#top {
+	height: 40px;
+	/* border-bottom: 1px solid #ddd; */
+	line-height: 40px;
+}
+
+#top .avatar {
+	width: 20px;
+	height: 20px;
+	border-radius: 15px;
+	border: 1px solid #fefefe;
+	vertical-align: middle;
+}
+
+.ln img {
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+}
+
+.ln {
+	margin: 10px;
+	display: inline-block;
+	color: #333;
+}
+
+#link {
+	height: 300px;
+}
+
+.mztag {
+	font-size: 11px;
+}
+
+.footer {
+	/* position: absolute; */
+	bottom: 10px;
+	text-align: center;
+	display: block;
+	width: 100%;
+	padding: 20px 0;
+	font-size: 12px;
+}
+
+.footer a {
+	color: #000;
+}
+
+.wish {
+	color: #333;
+}
+
+#top .dropdown {
+	display: inline-block;
+	padding-right: 20px;
+}
+
+#top .dropdown-menu {
+	left: -30px;
+	min-width: 80px;
+	font-size: 12px;
+	border-radius: 0;
+	padding: 0;
+}
+
+#top .dropdown-item {
+	padding: 0px 5px;
+	line-height: 25px;
+}
+
+.hot {
+	padding: 10px;
+}
+
+.tt {
+	margin-right: 5px;
+	color: rgba(0, 0, 0, .75);
+	line-height: 30px;
+	color: #007bff;
+}
+
+.kh {
+	padding-left: 20px;
+}
+
+.warning {
+	text-align: center;
+	display: block;
+	padding: 10px;
+	color: black;
+}
+/** gototop***/
+div.go-top {
+	display: none;
+	opacity: 0.6;
+	z-index: 999999;
+	position: fixed;
+	bottom: 113px;
+	left: 90%;
+	margin-left: 40px;
+	border: 1px solid #ccc;
+	width: 38px;
+	height: 38px;
+	background-color: #fefefe;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+div.go-top:hover {
+	opacity: 1;
+	filter: alpha(opacity = 100);
+}
+
+div.go-top div.arrow {
+	position: absolute;
+	left: 10px;
+	top: -1px;
+	width: 0;
+	height: 0;
+	border: 9px solid transparent;
+	border-bottom-color: blue;
+}
+
+div.go-top div.stick {
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	width: 8px;
+	height: 14px;
+	display: block;
+	background-color: blue;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+}
+/*****************************/
+.autocomplete-suggestions {
+	border: 1px solid #3E82F7;
+	background: #FFF;
+	overflow: auto;
+	border-top: none;
+}
+
+.autocomplete-suggestion {
+	padding: 5px 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 14px;
+}
+
+.autocomplete-selected {
+	background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+	font-weight: normal;
+	color: #000;
+}
+/* .autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; } */
+.col-sm {
+	border: 1px solid #ccc;
+}
+</style>
+<script type="text/javascript">
+function validate_required(field,alerttxt)
+{
+  with (field)
+  {
+    if (value==null||value.trim()=="")
+       {alert(alerttxt); return false}
+    else 
+	{return true}
+  }
+}
+
+function validate_form(thisform)
+{
+  with (thisform)
+  {
+     if (validate_required(wd,"输入不能为空!")==false)
+     {wd.focus();return false}
+  }
+}
+</script>
+</head>
+<body>
+	<div id="top"><span class="kh"></span> <div class="float-right" style="display: none;"><a href="#" class="tt "></a> <a href="#" class="login  btn btn-primary btn-xs    "></a></div></div>
+
+	<div class="container-fluid   ">
+		<div class="   logobox">
+			<!-- <div class="col-md-4 offset-md-4  "> -->
+			<img class="logo" src="index_files/logo.png" alt="logo">
+			<!-- </div> -->
+		</div>
+	</div>
+	
+	<div class="container">		
+		<form  action="$(qyt_host)/query" method="post"  onsubmit="return validate_form(this)">
+		<div class="searchbox ">
+			<div class="input-group ">
+				<input required="required" type="text" class="form-control sinput q" name="wd" > <pan class="input-group-btn">
+					<button class="btn btn-primary  sbt " type="submit">搜索一下</button>
+				</span>
+			</div>
+		</div>
+		</form>	
+		<div class="warning"><h5>撸代码搜索引擎(程序员撸代码专用)</h5></div>		
+	</div>
+
+	
+	<div class="footer" style="position: absolute; bottom: 0px;">	
+	    <div><img src="https://szcert.ebs.org.cn/Images/govIcon.gif" title="深圳市市场监督管理局企业主体身份公示" alt="深圳市市场监督管理局企业主体身份公示" style="border-width:0px;border:hidden; border:none;" width="75" height="105" border="0"></div>
+		<div>&nbsp;&nbsp;</div>		
+		<div>版权所有© 2020 深圳市祺溢通科技有限公司 - <a href="http://beian.miit.gov.cn/">备案号:粤ICP备16017623号-2 </a>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<a href="$(qyt_host)/disclaimer.html">免责声明</a><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>商务合作: 13925236752 </div>
+	</div>
+
+	<div class="go-top">
+		<div class="arrow"></div>
+		<div class="stick"></div>
+	</div>
+
+<script src="index_files/jquery.js"></script>
+<script src="index_files/bootstrap.js"></script>
+<div class="autocomplete-suggestions" style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div><div class="autocomplete-suggestions" style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+</body></html>
